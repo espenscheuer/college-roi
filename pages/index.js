@@ -78,8 +78,7 @@ export default function Home() {
   const callApi = async () => {
     const headers = { 'Content-Type': 'application/json', 'major' : major, 'degree' : degree, 'university' : university }
     fetch('api/data', { headers })
-        .then(response => response.json())
-        .then(data => setOutput({ totalReactPackages: data.total }));
+        .then(response => setOutput(response))
   }
 
   return (
