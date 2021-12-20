@@ -76,19 +76,10 @@ export default function Home() {
   const fetcher = (url) => fetch(url).then((res) => res.json())
 
   const callApi = async () => {
-    const response = await fetch('api/data', {
-      method: 'post',
-      body: JSON.stringify({
-        "universities" : university,
-        "majors": major,
-        "degree" : degree
-      }), 
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const myJson = await response.json();
-    setOuput(myJson) 
+    const headers = { 'Content-Type': 'application/json', 'major' : major, 'degree' : degree, 'university' : university }
+    fetch('api/data', { headers })
+        .then(response => response.json())
+        .then(data => setOutput({ totalReactPackages: data.total }));
   }
 
   return (
