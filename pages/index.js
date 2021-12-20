@@ -78,11 +78,11 @@ export default function Home() {
   const callApi = async () => {
     const response = await fetch('api/data', {
       method: 'post',
-      body: {
+      body: JSON.stringify({
         "universities" : university,
         "majors": major,
         "degree" : degree
-      }, 
+      }), 
       headers: {
         'Content-Type': 'application/json'
       }
