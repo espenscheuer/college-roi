@@ -108,7 +108,7 @@ export default function Home() {
               onChange={(event)=> setUniversity(event.target.value)}
             >
               {universities.map((record) =>
-                <MenuItem value={record.name}>{record.name}</MenuItem>
+                <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
               )}
             </Select>
         </FormControl>
@@ -122,7 +122,7 @@ export default function Home() {
               onChange={(event)=> setDegree(event.target.value)}
             >
               {degrees.map((record) =>
-                <MenuItem value={record.name}>{record.name}</MenuItem>
+                <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
               )}
             </Select>
         </FormControl>
@@ -136,7 +136,7 @@ export default function Home() {
               onChange={(event)=> setMajor(event.target.value)}
             >
               {majors.map((record) =>
-                <MenuItem value={record.name}>{record.name}</MenuItem>
+                <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
               )}
             </Select>
         </FormControl>
