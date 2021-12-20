@@ -85,7 +85,10 @@ export default function Home() {
          'university' : university }
 		});
 		response.text().then(value => {
-				setOutput(value)
+      console.log(response.text())
+      console.log(value)
+			setOutput(value)
+
     });
   };
 
