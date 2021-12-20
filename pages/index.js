@@ -75,12 +75,6 @@ export default function Home() {
 
   const fetcher = (url) => fetch(url).then((res) => res.json())
 
-  const callApi = async () => {
-    const headers = { 'Content-Type': 'application/json', 'major' : major, 'degree' : degree, 'university' : university }
-    fetch('api/data', { headers })
-        .then(response => setOutput(response))
-  }
-
   const callApi = async() => {
     setOutput('');
 		const response = await fetch('/api/data', {
