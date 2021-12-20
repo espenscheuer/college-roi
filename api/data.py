@@ -7,5 +7,5 @@ class handler(BaseHTTPRequestHandler):
     self.send_header('Content-type', 'text/plain')
     self.end_headers()
     # return some string here or whatever 
-    self.wfile.write("Wow you aren't gonna make shit from this lmao").encode()
+    self.wfile.write(str('You are going to be sooooo broke XD').encode())
     return
