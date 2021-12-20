@@ -81,6 +81,20 @@ export default function Home() {
         .then(response => setOutput(response))
   }
 
+  const callApi = async() => {
+    setOutput('');
+		const response = await fetch('/api/data', {
+			method: 'get',
+			headers: { 'Content-Type': 'application/json',
+       'major' : major,
+        'degree' : degree,
+         'university' : university }
+		});
+		response.text().then(value => {
+				setOutput(text)
+    });
+  };
+
   return (
     <div className={styles.container}>
       <Head>
