@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import useSWR from "swr";
+import {StylesProvider} from '@mui/styles';
 
 var  universities  = [
 	{
@@ -73,8 +73,6 @@ export default function Home() {
   const [degree, setDegree] = React.useState('');
   const [university, setUniversity] = React.useState('');
 
-  const fetcher = (url) => fetch(url).then((res) => res.json())
-
   const callApi = async() => {
     setOutput('');
 		const response = await fetch('/api/data', {
@@ -90,62 +88,62 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>College ROI</title>
-      </Head>
-      <Typography variant="h5">College ROI</Typography>
-      <div>
-        <FormControl sx={{ m: 1, minWidth: 360 }}>
-          <InputLabel id="University"> University </InputLabel>
-            <Select
-              labelId="university"
-              id="university"
-              value={university}
-              label="University"
-              onChange={(event)=> setUniversity(event.target.value)}
-            >
-              {universities.map((record) =>
-                <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
-              )}
-            </Select>
-        </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 360 }}>
-          <InputLabel id="Degree"> Degree </InputLabel>
-            <Select
-              labelId="degree"
-              id="degree"
-              value={degree}
-              label="Degree"
-              onChange={(event)=> setDegree(event.target.value)}
-            >
-              {degrees.map((record) =>
-                <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
-              )}
-            </Select>
-        </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 360 }}>
-          <InputLabel id="major"> Major </InputLabel>
-            <Select
-              labelId="major"
-              id="major"
-              value={major}
-              label="Major"
-              onChange={(event)=> setMajor(event.target.value)}
-            >
-              {majors.map((record) =>
-                <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
-              )}
-            </Select>
-        </FormControl>
+      <div className={styles.container}>
+        <Head>
+          <title>College ROI</title>
+        </Head>
+        <Typography variant="h5">College ROI</Typography>
+        <div className={styles.main}>
+          <FormControl sx={{maxWidth: 360, marginTop: 1}}>
+            <InputLabel id="University"> University </InputLabel>
+              <Select
+                labelId="university"
+                id="university"
+                value={university}
+                label="University"
+                onChange={(event)=> setUniversity(event.target.value)}
+              >
+                {universities.map((record) =>
+                  <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
+                )}
+              </Select>
+          </FormControl>
+          <FormControl sx={{maxWidth: 360, marginTop: 1}}>
+            <InputLabel id="Degree"> Degree </InputLabel>
+              <Select
+                labelId="degree"
+                id="degree"
+                value={degree}
+                label="Degree"
+                onChange={(event)=> setDegree(event.target.value)}
+              >
+                {degrees.map((record) =>
+                  <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
+                )}
+              </Select>
+          </FormControl>
+          <FormControl sx={{maxWidth: 360, marginTop: 1}}>
+            <InputLabel id="major"> Major </InputLabel>
+              <Select
+                labelId="major"
+                id="major"
+                value={major}
+                label="Major"
+                onChange={(event)=> setMajor(event.target.value)}
+              >
+                {majors.map((record) =>
+                  <MenuItem key = {record.name} value={record.name}>{record.name}</MenuItem>
+                )}
+              </Select>
+          </FormControl>
+          <Button sx={{maxWidth: 270, marginTop:1}} variant="contained"
+            onClick={() => {
+              callApi()
+            }}>
+            Calculate ROI
+          </Button>
+        </div>
+        {output && <div>{(output)}</div>}
       </div>
-      <Button variant="contained"
-        onClick={() => {
-          callApi()
-        }}>
-          Calculate ROI
-      </Button>
-      {output && <div>{(output)}</div>}
-    </div>
   )
 }
